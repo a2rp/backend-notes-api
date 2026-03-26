@@ -1,0 +1,68 @@
+### Home
+GET http://localhost:1202
+
+
+### Register User
+POST http://localhost:1202/api/auth/register
+Content-Type: application/json
+
+{
+  "name": "user1",
+  "email": "user1@mail.com",
+  "password": "123456"
+}
+
+
+### Login User
+POST http://localhost:1202/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "ashish@example.com",
+  "password": "123456"
+}
+
+### Login User
+POST http://localhost:1202/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "user1@mail.com",
+  "password": "123456"
+}
+
+
+### Create Note
+POST http://localhost:1202/api/notes
+Content-Type: application/json
+
+{
+  "title": "third user third mote",
+  "content": "third note content"
+}
+
+
+### Get My Notes
+GET http://localhost:1202/api/notes
+
+
+### Get Single Note
+GET http://localhost:1202/api/notes/69c5c38d97a0598f63f6a927
+
+
+### Update Note
+PUT http://localhost:1202/api/notes/69c5c38d97a0598f63f6a927
+Content-Type: application/json
+
+{
+  "title": "Updated second Note Title",
+  "content": "Updated second note note content"
+}
+
+
+### Delete Note
+DELETE http://localhost:1202/api/notes/69c5c38d97a0598f63f6a927
+
+
+### Logout User
+POST http://localhost:1202/api/auth/logout
