@@ -1,68 +1,56 @@
-### Home
-GET http://localhost:1202
+@baseUrl = http://localhost:1198
 
+### API status
+GET {{baseUrl}}/
 
-### Register User
-POST http://localhost:1202/api/auth/register
+### Health
+GET {{baseUrl}}/health
+
+### Register user
+POST {{baseUrl}}/api/auth/register
 Content-Type: application/json
 
 {
-  "name": "user1",
-  "email": "user1@mail.com",
-  "password": "123456"
+  "name": "Notes User",
+  "email": "notes-user@example.com",
+  "password": "password123"
 }
 
-
-### Login User
-POST http://localhost:1202/api/auth/login
+### Login user
+POST {{baseUrl}}/api/auth/login
 Content-Type: application/json
 
 {
-  "email": "ashish@example.com",
-  "password": "123456"
+  "email": "notes-user@example.com",
+  "password": "password123"
 }
 
-### Login User
-POST http://localhost:1202/api/auth/login
+### Create note
+POST {{baseUrl}}/api/notes
 Content-Type: application/json
 
 {
-  "email": "user1@mail.com",
-  "password": "123456"
+  "title": "First note",
+  "content": "Note content goes here."
 }
 
+### Get my notes
+GET {{baseUrl}}/api/notes
 
-### Create Note
-POST http://localhost:1202/api/notes
+### Get one note
+GET {{baseUrl}}/api/notes/PASTE_NOTE_ID_HERE
+
+### Update note
+PUT {{baseUrl}}/api/notes/PASTE_NOTE_ID_HERE
 Content-Type: application/json
 
 {
-  "title": "third user third mote",
-  "content": "third note content"
+  "title": "Updated note",
+  "content": "Updated note content."
 }
 
+### Delete note
+DELETE {{baseUrl}}/api/notes/PASTE_NOTE_ID_HERE
 
-### Get My Notes
-GET http://localhost:1202/api/notes
-
-
-### Get Single Note
-GET http://localhost:1202/api/notes/69c5c38d97a0598f63f6a927
-
-
-### Update Note
-PUT http://localhost:1202/api/notes/69c5c38d97a0598f63f6a927
-Content-Type: application/json
-
-{
-  "title": "Updated second Note Title",
-  "content": "Updated second note note content"
-}
-
-
-### Delete Note
-DELETE http://localhost:1202/api/notes/69c5c38d97a0598f63f6a927
-
-
-### Logout User
-POST http://localhost:1202/api/auth/logout
+### Logout user
+POST {{baseUrl}}/api/auth/logout
