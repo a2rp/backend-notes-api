@@ -64,7 +64,6 @@ The default port is `1198`.
 
 All JSON responses include `apiUrl` as the first field. Browser clients must use `credentials: "include"` for cookie-based requests.
 
-Detailed flow and security notes are available in [Documentation.md](./Documentation.md). Request examples are available in [rest.http](./rest.http).
 
 ## License
 
