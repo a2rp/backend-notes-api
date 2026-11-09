@@ -12,11 +12,10 @@ Secure personal notes REST API with JWT authentication, HttpOnly cookies, MongoD
 - Helmet security headers and rate limiting
 - Configurable CORS with credentials
 - Standard API response URLs and request logs
-- Automated in-process API tests
 
 ## Requirements
 
-- Node.js 18 or newer
+- Node.js 20.19 or newer
 - MongoDB running locally or a hosted MongoDB connection
 
 ## Setup
@@ -26,7 +25,7 @@ npm install
 copy .env.example .env
 ```
 
-Set a real MongoDB URI and a random `JWT_SECRET` with at least 32 characters in `.env`.
+Set a real MongoDB URI and replace the `JWT_SECRET` placeholder with a unique random value of at least 32 characters. In production, set `NODE_ENV=production` and provide trusted frontend origins in `CLIENT_ORIGINS`.
 
 ## Run
 
@@ -42,10 +41,10 @@ The default port is `1198`.
 | --- | --- | --- |
 | `PORT` | No | Server port, defaults to `1198` |
 | `MONGO_URI` | Yes | MongoDB connection string |
-| `JWT_SECRET` | Yes | Random secret, minimum 32 characters |
+| `JWT_SECRET` | Yes | Unique random secret, minimum 32 characters |
 | `NODE_ENV` | No | Use `production` to enable Secure cookies |
-| `CLIENT_ORIGINS` | No | Comma-separated trusted frontend origins |
-| `COOKIE_SAME_SITE` | No | Cookie policy, defaults to `lax` |
+| `CLIENT_ORIGINS` | Production | Comma-separated trusted frontend origins |
+| `COOKIE_SAME_SITE` | No | `strict`, `lax`, or `none`; `none` requires production Secure cookies |
 
 ## API endpoints
 
@@ -63,6 +62,10 @@ The default port is `1198`.
 | DELETE | `/api/notes/:id` | Authenticated | Delete an owned note |
 
 All JSON responses include `apiUrl` as the first field. Browser clients must use `credentials: "include"` for cookie-based requests.
+
+Passwords must contain at least 8 characters and no more than 72 UTF-8 bytes. Notes support titles up to 200 characters and content up to 10,000 characters. Authentication and note routes use per-process in-memory rate limits; multi-instance deployments need a shared limiter store.
+
+The JWT cookie expires after seven days. Logout clears the browser cookie but does not revoke a copied token before expiry.
 
 
 ## License

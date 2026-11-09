@@ -1,16 +1,19 @@
 {
     "name": "backend-notes-api",
     "version": "1.0.0",
-    "description": "Secure notes CRUD API with JWT authentication and user ownership",
-    "main": "index.js",
+    "description": "Express 5 and MongoDB personal notes API with user-scoped CRUD and HttpOnly JWT authentication",
+    "main": "src/index.js",
     "scripts": {
         "dev": "nodemon src/index.js",
         "start": "node src/index.js"
     },
-    "keywords": ["nodejs", "express", "mongodb", "notes", "jwt", "crud"],
+    "keywords": ["nodejs", "express", "mongodb", "notes", "jwt", "crud", "express-5", "http-only-cookie", "rate-limiting", "user-ownership"],
     "author": "Ashish Ranjan",
     "license": "MIT",
     "type": "commonjs",
+    "engines": {
+        "node": ">=20.19.0"
+    },
     "dependencies": {
         "bcryptjs": "^3.0.3",
         "cookie-parser": "^1.4.7",

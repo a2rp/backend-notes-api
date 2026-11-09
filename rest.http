@@ -13,7 +13,7 @@ Content-Type: application/json
 {
   "name": "Notes User",
   "email": "notes-user@example.com",
-  "password": "password123"
+  "password": "ReplaceThisWithYourOwnPassphrase2026!"
 }
 
 ### Login user
@@ -22,7 +22,7 @@ Content-Type: application/json
 
 {
   "email": "notes-user@example.com",
-  "password": "password123"
+  "password": "ReplaceThisWithYourOwnPassphrase2026!"
 }
 
 ### Create note

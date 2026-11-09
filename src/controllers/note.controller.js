@@ -11,12 +11,12 @@ const validateNote = ({ title, content }, partial = false) => {
     return null;
 };
 
-const validId = (id) => mongoose.Types.ObjectId.isValid(id);
+const validId = (id) => mongoose.isValidObjectId(id);
 const notFound = (res) => res.status(404).json({ message: "Note not found" });
 
 const createNote = async (req, res) => {
     try {
-        const { title, content } = req.body;
+        const { title, content } = req.body || {};
         const validationError = validateNote({ title, content });
         if (validationError) return res.status(422).json({ message: validationError });
         const note = await Note.create({ title: title.trim(), content, user: req.user._id });
@@ -52,7 +52,7 @@ const getSingleNote = async (req, res) => {
 const updateNote = async (req, res) => {
     try {
         if (!validId(req.params.id)) return notFound(res);
-        const { title, content } = req.body;
+        const { title, content } = req.body || {};
         const validationError = validateNote({ title, content }, true);
         if (validationError) return res.status(422).json({ message: validationError });
         if (title === undefined && content === undefined) return res.status(422).json({ message: "Title or content is required" });
